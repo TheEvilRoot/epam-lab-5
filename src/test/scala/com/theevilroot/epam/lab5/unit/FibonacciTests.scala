@@ -1,3 +1,6 @@
+package com.theevilroot.epam.lab5.unit
+
+import com.theevilroot.epam.lab5.Fibonacci
 import org.scalatest.flatspec.AnyFlatSpec
 
 class FibonacciTests extends AnyFlatSpec {

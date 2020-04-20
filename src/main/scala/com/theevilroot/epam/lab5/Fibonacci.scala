@@ -1,3 +1,5 @@
+package com.theevilroot.epam.lab5
+
 import scala.annotation.tailrec
 
 object Fibonacci {
