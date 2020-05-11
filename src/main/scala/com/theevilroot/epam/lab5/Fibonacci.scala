@@ -3,20 +3,23 @@ package com.theevilroot.epam.lab5
 import scala.annotation.tailrec
 
 object Fibonacci {
-  @tailrec
-  def fibonacci_tail(n: Int, a: Int = 0, b: Int = 1): Int = n match {
-    case 0 => a
-    case _ => fibonacci_tail(n - 1, b, a + b)
-  }
 
-  def fibonacci(n: Int): Int = n match {
+  @tailrec
+  def fibonacci_tail(a: Int, b: Int)(n: Int): Int = n match {
+      case 0 => a
+      case _ => fibonacci_tail(b, a + b)(n - 1)
+    }
+
+  def nth_fibonacci_tail: Int => Int = fibonacci_tail(0, 1)
+
+  def nth_fibonacci(n: Int): Int = n match {
     case 0 | 1 => n
-    case _ => fibonacci(n - 1) + fibonacci(n - 2)
+    case _ => nth_fibonacci(n - 1) + nth_fibonacci(n - 2)
   }
 
-  @tailrec
-  def findFibonacci(count: Int, fibFunc: Int => Int, size: Int = 0, numbers: List[Int] = List()): List[Int] = size match {
-    case _ if size < count => findFibonacci(count, fibFunc, size + 1, numbers.appended(fibFunc(size)))
-    case _ => numbers
+  def fibonacci(n: Int, f: Int => Int): List[Int] = n match {
+    case a if a <= 0 => List()
+    case a => fibonacci(a - 1, f).appended(f(n - 1))
   }
+
 }
